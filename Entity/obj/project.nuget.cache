@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "cV5ojfIT1QQcxeAjsrLqpdlNAPICL3MgLKhuALm1Ac2/wHTpWcSgCm5obKw+c+jlrbplBSn8YMwWsE87EcoWgg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\DaspN\\Desktop\\VANITAS\\ProyectoVacacional-main\\ProyectoVacacional-main\\Entity\\Entity.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DaspN\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

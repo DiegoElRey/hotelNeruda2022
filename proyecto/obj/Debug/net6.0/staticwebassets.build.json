@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "MtRRmy7rLAFTEkrrI3gsBpQBGK2PD24IV2c8PJXFA1M=",
+  "Source": "proyecto",
+  "BasePath": "_content/proyecto",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "proyecto\\wwwroot",
+      "Source": "proyecto",
+      "ContentRoot": "C:\\Users\\DaspN\\Desktop\\VANITAS\\ProyectoVacacional-main\\ProyectoVacacional-main\\proyecto\\wwwroot\\",
+      "BasePath": "_content/proyecto",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\DaspN\\Desktop\\VANITAS\\ProyectoVacacional-main\\ProyectoVacacional-main\\proyecto\\wwwroot\\favicon.ico",
+      "SourceId": "proyecto",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DaspN\\Desktop\\VANITAS\\ProyectoVacacional-main\\ProyectoVacacional-main\\proyecto\\wwwroot\\",
+      "BasePath": "_content/proyecto",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    }
+  ]
+}
