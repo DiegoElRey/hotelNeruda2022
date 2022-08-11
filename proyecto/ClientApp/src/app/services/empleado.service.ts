@@ -30,5 +30,17 @@ export class EmpleadoService {
         catchError(this.handleErrorService.handleError<Empleado>('Registrar Empleado', null))
       );
   }
-
+  delete(identificacion: string): Observable<Empleado> {
+    return this.http.delete<Empleado>(this.baseUrl + 'api/Habitacion/' + identificacion).pipe(
+      tap(_ => this.handleErrorService.log('Datos')),
+      catchError(this.handleErrorService.handleError<Empleado>('Eliminar Habitacion', null))
+    );
+  }
+  put(empleado: Empleado){
+    return this.http.put<Empleado>(this.baseUrl + 'api/Habitacion', empleado)
+      .pipe(
+        tap(_ => this.handleErrorService.log('datos enviados')),
+        catchError(this.handleErrorService.handleError<Empleado>('Registrar Habitacion', null))
+      );
+  }
 }

@@ -28,9 +28,16 @@ export class HabitacionRegistroComponent implements OnInit {
         messageBox.componentInstance.title = "Resultado Operación";
         messageBox.componentInstance.cuerpo = 'Info: se ha registrado una habitacion';
         this.habitacion = p;
+        this.reset();
       }
     });
-    window.location.reload();
   }
-
+  reset(){
+    this.habitacion.estado = "";
+    this.habitacion.fechaDisponible = new Date;
+    this.habitacion.idHabitacion = "";
+    this.habitacion.nPersonas = 1;
+    this.habitacion.precio = 0;
+    this.habitacion.tipo = "";
+  }
 }

@@ -55,19 +55,33 @@ export class HabitacionService {
         catchError(this.handleErrorService.handleError<Habitacion[]>('Consulta Habitacion', null))
       );
   }
-  post(habitacion: Habitacion): Observable<Habitacion> {
-    return this.http.post<Habitacion>(this.baseUrl + 'api/Habitacion', habitacion)
-      .pipe(
-        tap(_ => this.handleErrorService.log('datos enviados')),
-        catchError(this.handleErrorService.handleError<Habitacion>('Registrar Habitacion', null))
-      );
-  }
+  
   getId(IdHabitacion: string): Observable<Habitacion> {
     const url = `${this.baseUrl + 'api/reserva'}/${IdHabitacion}`;
       return this.http.get<Habitacion>(url, httpOptions)
       .pipe(
         tap(_ => this.handleErrorService.log('datos enviados')),
         catchError(this.handleErrorService.handleError<Habitacion>('Buscar Reserva', null))
+      );
+  }
+  delete(numerohabitacion: string): Observable<Habitacion> {
+    return this.http.delete<Habitacion>(this.baseUrl + 'api/Habitacion/' + numerohabitacion).pipe(
+      tap(_ => this.handleErrorService.log('Datos')),
+      catchError(this.handleErrorService.handleError<Habitacion>('Eliminar Habitacion', null))
+    );
+  }
+  put(habitacion: Habitacion){
+    return this.http.put<Habitacion>(this.baseUrl + 'api/Habitacion', habitacion)
+      .pipe(
+        tap(_ => this.handleErrorService.log('datos enviados')),
+        catchError(this.handleErrorService.handleError<Habitacion>('Registrar Habitacion', null))
+      );
+  }
+  post(habitacion: Habitacion): Observable<Habitacion> {
+    return this.http.post<Habitacion>(this.baseUrl + 'api/Habitacion', habitacion)
+      .pipe(
+        tap(_ => this.handleErrorService.log('datos enviados')),
+        catchError(this.handleErrorService.handleError<Habitacion>('Registrar Habitacion', null))
       );
   }
 }

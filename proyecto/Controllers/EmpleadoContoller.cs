@@ -10,7 +10,7 @@ using EmpleadoModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 
-[Authorize]
+
 [Route("api/[controller]")]
 [ApiController]
 
@@ -76,6 +76,18 @@ public class EmpleadoController : ControllerBase
         string mensaje = _empleadoService.Eliminar(idempleado);
         return Ok(mensaje);
     }
+
+    [HttpPut]
+         public ActionResult<EmpleadoViewModel> Actualizar(EmpleadoInputModel empleadoInputModel){
+            Empleado empleado = MapearEmpleado(empleadoInputModel);
+            var Response = _empleadoService.ActualizarEmpleado(empleado);
+            if (Response.Error)
+        {
+            return BadRequest(Response.Mensaje);
+        }
+        var empleadoViewModel = new EmpleadoViewModel (Response.Empleado);
+        return Ok (empleadoViewModel);
+        }
 
     private Empleado MapearEmpleado(EmpleadoInputModel empleadoInput)
     {

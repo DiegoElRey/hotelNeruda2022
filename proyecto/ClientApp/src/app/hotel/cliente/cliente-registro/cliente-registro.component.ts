@@ -25,23 +25,6 @@ export class ClienteRegistroComponent implements OnInit {
     this.cliente = new Cliente();
     this.cliente.sexo = "Seleccionar sexo";
     this.user.tipo = "Cliente";
-    console.log('a');
-  }
-
-  private ValidaCedula(control: AbstractControl) {
-    const cantidad = control.value;
-    if (cantidad <= 0 || cantidad >= 999999999999) {
-      return { validCantidad: true, messageCantidad: 'Cantidad menor o igual a 0' };
-    }
-    return null;
-  }
-
-  private ValidaSexo(control: AbstractControl) {
-    const sexo = control.value;
-    if (sexo.toLocaleUpperCase() !== 'MASCULINO' && sexo.toLocaleUpperCase() !== 'FEMENINO') {
-      return { validSexo: true, messageSexo: 'Sexo No Valido' };
-    }
-    return null;
   }
 
   add() {
@@ -54,6 +37,5 @@ export class ClienteRegistroComponent implements OnInit {
         this.cliente = p;
       }
     });
-    window.location.reload();
   }
 }

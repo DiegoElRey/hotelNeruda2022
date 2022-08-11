@@ -4,6 +4,8 @@ import { HabitacionService } from 'src/app/services/habitacion.service';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { Habitacion } from '../../models/habitacion';
 import { Reserva } from '../../models/reserva';
+import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-habitacion-consulta',
@@ -13,7 +15,8 @@ import { Reserva } from '../../models/reserva';
 export class HabitacionConsultaComponent implements OnInit {
   habitaciones: Habitacion[];
   searchText: string;
-  constructor(private habitacionService: HabitacionService, private reservaService: ReservaService) { }
+  closeResult = '';
+  constructor(private modalService: NgbModal, private habitacionService: HabitacionService, private reservaService: ReservaService) { }
 
   ngOnInit(){
     this.habitaciones = [];
@@ -21,6 +24,37 @@ export class HabitacionConsultaComponent implements OnInit {
       this.habitaciones = result;
     });
       this.actualizarListaSignal();
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  editar(habitacion: Habitacion){
+    this.habitacionService.put(habitacion).subscribe(p=>{    
+  })
+  }
+  eliminar(habitacion: Habitacion){
+    this.habitacionService.delete(habitacion.idHabitacion).subscribe(p=>{
+      
+        const messageBox = this.modalService.open(AlertModalComponent)
+        messageBox.componentInstance.title = "Resultado Operación";
+        messageBox.componentInstance.cuerpo = 'Info: se ha eliminado una habitacion';
+      
+    })
   }
 
   private actualizarListaSignal(){

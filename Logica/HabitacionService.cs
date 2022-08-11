@@ -65,6 +65,31 @@ namespace Logica
             }
         }
 
+         public ActualizarHabitacionResponse ActualizarHabitacion(Habitacion habitacion){
+            
+            try
+            {
+                var resul=_context.Habitaciones.Find(habitacion.IdHabitacion);
+                if (resul != null)
+                {
+                    resul.Estado = habitacion.Estado;
+                    resul.nPersonas = habitacion.nPersonas;
+                    resul.Precio = habitacion.Precio;
+                    resul.Tipo = habitacion.Tipo;
+                    _context.Habitaciones.Update(resul);
+                    _context.SaveChanges();
+                }
+                return new ActualizarHabitacionResponse(habitacion);
+            }
+            catch (Exception e)
+
+            {
+                return new ActualizarHabitacionResponse($"Error de la Aplicacion: {e.Message}");
+            }
+        }
+
+
+       
         public class ConsultaHabitacionResponse
         {
 
@@ -99,6 +124,35 @@ namespace Logica
 
 
             public GuardarHabitacionResponse(string mensaje)
+
+            {
+                Error = true;
+                Mensaje = mensaje;
+            }
+
+            public bool Error { get; set; }
+
+            public string Mensaje { get; set; }
+
+            public Habitacion Habitacion { get; set; }
+
+        }
+        public class ActualizarHabitacionResponse
+
+        {
+
+            public ActualizarHabitacionResponse(Habitacion habitacion)
+
+            {
+                Error = false;
+
+                Habitacion = habitacion;
+
+            }
+
+
+
+            public ActualizarHabitacionResponse(string mensaje)
 
             {
                 Error = true;

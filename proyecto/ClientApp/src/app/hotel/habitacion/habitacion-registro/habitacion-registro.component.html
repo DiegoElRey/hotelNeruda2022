@@ -38,7 +38,7 @@
                     [ngClass]="{ 'is-invalid': nPersonas.touched && nPersonas.invalid }" required />
                 <div *ngIf="nPersonas.touched && nPersonas.invalid" class="invalid-feedback">
                   <div *ngIf="nPersonas.errors.required">El número de personas es requerido</div>
-                  <div *ngIf="nPersonas.errors.minlength || nPersonas.errors.maxlength">El número de personas debe tener entre 1 y 5 digitos</div>
+                  <div *ngIf="nPersonas.errors.minlength || nPersonas.errors.maxlength">El número de personas debe ser entre 1 y 5</div>
                 </div>
             </div>
 

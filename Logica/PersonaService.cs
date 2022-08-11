@@ -42,10 +42,19 @@ namespace Logica
             }
         }
 
-        public Persona BuscarxIdentificacion(string cedula)
+        public Persona BuscarxIdentificacion(string username)
         {
-            Persona persona = _context.Personas.Find(cedula);
-            return persona;
+            Persona personaEncontrada = new Persona();
+            List<Persona> personas = _context.Personas.ToList();
+            foreach (var persona in personas)
+            {
+                if (persona.User.UserName == username)
+                {
+                    personaEncontrada = persona;
+                }
+            }
+            
+            return personaEncontrada;
         }
 
         public string Eliminar(string cedula)

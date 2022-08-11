@@ -62,6 +62,59 @@ namespace Logica
                 return $"No se encontro el empleado. ";
             }
         }
+         public ActualizarEmpleadoResponse ActualizarEmpleado(Empleado empleado){
+            
+            try
+            {
+                var resul=_context.Empleados.Find(empleado.Cedula);
+                if (resul != null)
+                {
+                    resul.Nombre = empleado.Nombre;
+                    resul.Apellido = empleado.Apellido;
+                    resul.Edad = empleado.Edad;
+                    resul.Cargo = empleado.Cargo;
+                    resul.Jornada = empleado.Jornada;
+                    resul.Telefono = empleado.Telefono;
+                    _context.Empleados.Update(resul);
+                    _context.SaveChanges();
+                }
+                return new ActualizarEmpleadoResponse(empleado);
+            }
+            catch (Exception e)
+
+            {
+                return new ActualizarEmpleadoResponse($"Error de la Aplicacion: {e.Message}");
+            }
+        }
+         public class ActualizarEmpleadoResponse
+
+        {
+
+            public ActualizarEmpleadoResponse(Empleado empleado)
+
+            {
+                Error = false;
+
+                Empleado = empleado;
+
+            }
+
+
+
+            public ActualizarEmpleadoResponse(string mensaje)
+
+            {
+                Error = true;
+                Mensaje = mensaje;
+            }
+
+            public bool Error { get; set; }
+
+            public string Mensaje { get; set; }
+
+            public Empleado Empleado { get; set; }
+
+        }
 
         public class ConsultaEmpleadoResponse
         {

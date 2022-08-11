@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using proyecto.Hubs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
-[Authorize]
+
+
 [Route("api/[controller]")]
 [ApiController]
 public class HabitacionController : ControllerBase
@@ -48,7 +50,7 @@ public class HabitacionController : ControllerBase
         return habitacionViewModel;
     }
 
-    // POST: api/Persona​
+    // POST: api/habitacion
 
     [HttpPost]
     public async Task<ActionResult<HabitacionViewModel>> Post(HabitacionInputModel habitacionInput)
@@ -72,8 +74,31 @@ public class HabitacionController : ControllerBase
         string mensaje = _habitacionService.Eliminar(idhabitacion);
         return Ok(mensaje);
     }
+    [HttpPut]
+         public ActionResult<HabitacionViewModel> Actualizar(HabitacionInputModel habitacionInputModel){
+            Habitacion habitacion = MapearHabitacionActualizar(habitacionInputModel);
+            var Response = _habitacionService.ActualizarHabitacion(habitacion);
+            if (Response.Error)
+        {
+            return BadRequest(Response.Mensaje);
+        }
+        var habitacionview = new HabitacionViewModel (Response.Habitacion);
+        return Ok (habitacionview);
+        }
 
     private Habitacion MapearHabitacion(HabitacionInputModel habitacionInput)
+    {
+        var habitacion = new Habitacion
+        {
+            IdHabitacion = habitacionInput.IdHabitacion,
+            Tipo = habitacionInput.Tipo,
+            nPersonas = habitacionInput.nPersonas,
+            Estado = habitacionInput.Estado,
+            Precio = habitacionInput.Precio,
+        };
+        return habitacion;
+    }
+    private Habitacion MapearHabitacionActualizar(HabitacionInputModel habitacionInput)
     {
         var habitacion = new Habitacion
         {

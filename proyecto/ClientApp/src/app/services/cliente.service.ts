@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Cliente } from '../hotel/models/cliente';
+import { Persona } from '../hotel/models/persona';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -44,6 +45,19 @@ export class ClienteService {
         tap(_ => this.handleErrorService.log('datos enviados')),
         catchError(this.handleErrorService.handleError<Cliente>('Buscar Cliente', null))
       );
+  }
+  // getIdUserName(userName: string): Observable<Persona> {
+  //   const url = `${this.baseUrl + 'api/Persona'}/${userName}`;
+  //     return this.http.get<Persona>(url, httpOptions)
+  //     .pipe(
+  //       tap(_ => this.handleErrorService.log('datos enviados')),
+  //       catchError(this.handleErrorService.handleError<Cliente>('Buscar Cliente', null))
+  //     );
+  // }
+  getIdUserName(userName: String): Observable<Persona>{
+    return this.http.get<Persona>("https://localhost:5001/"+"api/Persona/"+userName, httpOptions).pipe(
+      tap(()=>console.log("Buscado correctamente"))
+    )
   }
 
 }

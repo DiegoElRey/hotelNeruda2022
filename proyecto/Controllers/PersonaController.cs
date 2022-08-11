@@ -34,14 +34,22 @@ public class PersonaController : ControllerBase
         }
     }
     // GET: api/Persona/5​
-    [HttpGet("{cedula}")]
-    public ActionResult<PersonaViewModel> Get(string cedula)
-    {
-        var persona = _personaService.BuscarxIdentificacion(cedula);
-        if (persona == null) return NotFound();
-        var personaViewModel = new PersonaViewModel(persona);
-        return personaViewModel;
-    }
+    // [HttpGet("{cedula}")]
+    // public ActionResult<PersonaViewModel> Get(string cedula)
+    // {
+    //     var persona = _personaService.BuscarxIdentificacion(cedula);
+    //     if (persona == null) return NotFound();
+    //     var personaViewModel = new PersonaViewModel(persona);
+    //     return personaViewModel;
+    // }
+    // GET: api/Persona/5​
+     [HttpGet("{username}")]
+        public ActionResult<PersonaViewModel> Getusername(string username){
+            var persona = _personaService.BuscarxIdentificacion(username);
+            if (persona == null) return NotFound();
+            var personaViewModel = new PersonaViewModel(persona);
+            return Ok(personaViewModel);
+        }
 
     // POST: api/Persona​
 
