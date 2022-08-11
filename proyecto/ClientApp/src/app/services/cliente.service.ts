@@ -54,10 +54,10 @@ export class ClienteService {
   //       catchError(this.handleErrorService.handleError<Cliente>('Buscar Cliente', null))
   //     );
   // }
-  getIdUserName(userName: String): Observable<Persona>{
-    return this.http.get<Persona>("https://localhost:5001/"+"api/Persona/"+userName, httpOptions).pipe(
-      tap(()=>console.log("Buscado correctamente"))
-    )
-  }
+  // getIdUserName(userName: String): Observable<Persona>{
+  //   return this.http.get<Persona>("https://localhost:5001/"+"api/Persona/"+userName, httpOptions).pipe(
+  //     tap(()=>console.log("Buscado correctamente"))
+  //   )
+  // }
 
 }

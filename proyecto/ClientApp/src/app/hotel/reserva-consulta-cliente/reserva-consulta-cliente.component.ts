@@ -23,25 +23,24 @@ export class ReservaConsultaClienteComponent implements OnInit {
   constructor(private reservaService: ReservaService, private clienteService: ClienteService) { }
 
   ngOnInit(){
-    this.reservas = [];
-    this.BuscarCedula();
+    // this.reservas = [];
+    // this.BuscarCedula();
   }
-  BuscarCedula(){
-    var lista = JSON.parse(sessionStorage.getItem('Login'));
-    this.clienteService.getIdUserName(lista.username).subscribe(result =>{
-      this.cliente = result;
-      console.log(this.cliente);
-     });
+  // BuscarCedula(){
+  //   var lista = JSON.parse(sessionStorage.getItem('Login'));
+  //   this.clienteService.getIdUserName(lista.username).subscribe(result =>{
+  //     this.cliente = result;
+  //    });
      
-  }
+  // }
 
-  Eliminar(reserva: Reserva){
-    this.reservaService.delete(reserva.idReserva);
-    if(reserva == null){
-      const messageBox = this.modalService.open(AlertModalComponent)
-      messageBox.componentInstance.title = "Resultado Operación";
-      messageBox.componentInstance.cuerpo = 'Info: Se eliminó esta reserva';
-    }
-  }
+  // Eliminar(reserva: Reserva){
+  //   this.reservaService.delete(reserva.idReserva);
+  //   if(reserva == null){
+  //     const messageBox = this.modalService.open(AlertModalComponent)
+  //     messageBox.componentInstance.title = "Resultado Operación";
+  //     messageBox.componentInstance.cuerpo = 'Info: Se eliminó esta reserva';
+  //   }
+  // }
   
 }
